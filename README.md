@@ -1,2 +1,2 @@
 # htv-v-bot
-Hack The Valley V Discord anti-racism bot.
+Hack The Valley V Discord first aid bot.
