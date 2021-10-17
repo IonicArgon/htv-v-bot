@@ -250,7 +250,7 @@ class FirstAid(commands.Cog):
     # Command to Compare Symptoms to Symptom in the Database
     @commands.command(
         description="Compare Symptoms to Database to Find Conditions",
-        aliases=["c", "comp"])
+        aliases=["c", "comp", "cmp"])
     async def compare(self, ctx, *, input=None):
         embed_title = "Error comparing symptoms."
         embed_desc = ""
@@ -265,15 +265,19 @@ class FirstAid(commands.Cog):
             for i in self.conditions:
                 for j in i[1]:
                     if re.search(input, j, re.IGNORECASE):
-                        embed_title = "Possible conditions:\n\n"
-                        embed_desc += "- {}\n".format(i[0])
-                        embed_color = COLOR_BLUE
+                        if i[0] in embed_desc:
+                            continue
+                        else:
+                            embed_title = "Possible conditions:\n\n"
+                            embed_desc += "- {}\n".format(i[0])
+                            embed_color = COLOR_BLUE
 
         if embed_desc == "":
             embed_desc = "No conditions match the given symptom."
 
         await ctx.send(embed=discord.Embed(
             title=embed_title, description=embed_desc, color=embed_color))
+
 
 def setup(bot):
     bot.add_cog(FirstAid(bot))
