@@ -1,7 +1,5 @@
 import discord
 import os
-import requests
-import json
 import firstAid
 
 from discord.ext import commands
@@ -12,12 +10,11 @@ bot.remove_command('help')
 
 # bot stuff
 
-
 @bot.event
 async def on_ready():
     print("We have logged in as {0.user}".format(bot))
     await bot.change_presence(activity=discord.Activity(
-        type=discord.ActivityType.playing, name=" .help"))
+        type=discord.ActivityType.playing, name="| .help for help!"))
 
 
 @bot.command(pass_context=True)
@@ -71,12 +68,14 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
 
+
 @bot.command(pass_context=True)
 async def easterEgg(ctx):
     embed = discord.Embed(title=os.getenv('easter'))
     embed.set_image(url="https://placekitten.com/500/300")
     await ctx.send(embed=embed)
-  
+
+
 @bot.command(pass_context=True)
 async def randomTestCommand(ctx):
     embed = discord.Embed(title=os.getenv('LOGGER_NAME'))

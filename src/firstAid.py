@@ -268,13 +268,12 @@ class FirstAid(commands.Cog):
                         embed_title = "Possible conditions:\n\n"
                         embed_desc += "- {}\n".format(i[0])
                         embed_color = COLOR_BLUE
-        
+
         if embed_desc == "":
             embed_desc = "No conditions match the given symptom."
 
         await ctx.send(embed=discord.Embed(
             title=embed_title, description=embed_desc, color=embed_color))
-
 
 def setup(bot):
     bot.add_cog(FirstAid(bot))
